@@ -3,10 +3,10 @@
 namespace App\Repositories;
 
 use App\Models\Customer;
-use App\Repositories\Contracts\PhoneNumberRepositoryInterface;
+use App\Repositories\Contracts\CustomerRepositoryInterface;
 use Illuminate\Support\Collection;
 
-class PhoneNumberRepository implements PhoneNumberRepositoryInterface
+class CustomerRepository implements CustomerRepositoryInterface
 {
     public function get(): Collection
     {

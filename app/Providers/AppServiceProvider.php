@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Repositories\Contracts\PhoneNumberRepositoryInterface;
-use App\Repositories\PhoneNumberRepository;
+use App\Repositories\Contracts\CustomerRepositoryInterface;
+use App\Repositories\CustomerRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,8 +14,8 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(
-            PhoneNumberRepositoryInterface::class,
-            PhoneNumberRepository::class
+            CustomerRepositoryInterface::class,
+            CustomerRepository::class
         );
     }
 

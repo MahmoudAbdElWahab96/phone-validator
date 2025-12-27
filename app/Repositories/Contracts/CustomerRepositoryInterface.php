@@ -4,7 +4,7 @@ namespace App\Repositories\Contracts;
 
 use Illuminate\Support\Collection;
 
-interface PhoneNumberRepositoryInterface
+interface CustomerRepositoryInterface
 {
     public function get(): Collection;
 }

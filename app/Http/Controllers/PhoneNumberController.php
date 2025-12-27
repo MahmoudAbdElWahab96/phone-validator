@@ -13,10 +13,13 @@ class PhoneNumberController extends Controller
         FilterPhoneNumbersService $service,
         PhoneValidationService $phoneService
     ) {
+        $perPage = (int) $request->query('per_page', 15);
+        $perPage = min(max($perPage, 5), 100);
+
         $phoneNumbers = $service->execute(
             $request->country(),
             $request->state(),
-            15
+            $perPage
         );
 
         return view('phones.index', [

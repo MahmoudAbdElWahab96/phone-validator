@@ -283,24 +283,24 @@
                 @if ($phoneNumbers->onFirstPage())
                     <span class="disabled">⟨ Prev</span>
                 @else
-                    <a href="{{ $phoneNumbers->previousPageUrl() }}">
+                    <a href="{{ $phoneNumbers->previousPageUrl() }}">⟨ Prev</a>
                 @endif
 
-                    {{-- Numeric Page Links --}}
-                    @foreach ($phoneNumbers->getUrlRange(1, $phoneNumbers->lastPage()) as $page => $url)
-                        @if ($page == $phoneNumbers->currentPage())
-                            <span class="active">{{ $page }}</span>
-                        @else
-                            <a href="{{ $url }}">{{ $page }}</a>
-                        @endif
-                    @endforeach
-
-                    {{-- Next Page Link --}}
-                    @if ($phoneNumbers->hasMorePages())
-                        <a href="{{ $phoneNumbers->appends(request()->query())->nextPageUrl() }}">Next ⟩</a>
+                {{-- Numeric Page Links --}}
+                @foreach ($phoneNumbers->getUrlRange(1, $phoneNumbers->lastPage()) as $page => $url)
+                    @if ($page == $phoneNumbers->currentPage())
+                        <span class="active">{{ $page }}</span>
                     @else
-                        <span class="disabled">Next ⟩</span>
+                        <a href="{{ $url }}">{{ $page }}</a>
                     @endif
+                @endforeach
+
+                {{-- Next Page Link --}}
+                @if ($phoneNumbers->hasMorePages())
+                    <a href="{{ $phoneNumbers->appends(request()->query())->nextPageUrl() }}">Next ⟩</a>
+                @else
+                    <span class="disabled">Next ⟩</span>
+                @endif
             </div>
         @else
             <div class="no-results">
