@@ -3,13 +3,13 @@
 namespace App\Services;
 
 use App\Filters\PhoneStateFilter;
-use App\Repositories\Contracts\PhoneNumberRepositoryInterface;
+use App\Repositories\Contracts\CustomerRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class FilterPhoneNumbersService
 {
     public function __construct(
-        private PhoneNumberRepositoryInterface $repository,
+        private CustomerRepositoryInterface $repository,
         private PhoneStateFilter $filter
     ) {}
 
@@ -40,7 +40,7 @@ class FilterPhoneNumbersService
         });
 
         $page = LengthAwarePaginator::resolveCurrentPage();
-        $items = $mapped->slice(($page - 1) * $perPage, $perPage)->values();
+        $items = $mapped->forPage($page, $perPage)->values();
 
         return new LengthAwarePaginator(
             $items,
