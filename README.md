@@ -13,23 +13,56 @@
 
 # 📱 Phone Validator
 
-**Phone Number Validator** built with **Laravel**, following **Clean Architecture**,  
-**Repository Pattern**, and **Strategy Pattern** for country-based phone validation.
+A **Phone Number** Validator built with Laravel, designed using Clean Architecture,
+the Repository Pattern, and the Strategy Pattern for scalable, country-based phone validation.
 
-This project was designed as a **technical assessment / real-world scalable example**,  
-focusing on **OOP, SOLID principles, and maintainability** rather than UI.
+This project was implemented as a technical assessment and real-world reference,
+with a strong focus on Object-Oriented Programming (OOP), SOLID principles,
+clean code, and long-term maintainability, rather than UI complexity.
 
 ---
 
 ## ✨ Features
 
 - ✅ Country-based phone number validation
-- ✅ Strategy Pattern for each country validator
+    - Validates phone numbers based on country-specific rules and formats.
+
+- ✅ Strategy Pattern for phone validators
+    - Each country validator is isolated and interchangeable.
+    - New countries can be added without modifying existing logic.
+
+- ✅ Validator Resolver with service container tagging
+    - Automatically resolves the correct validator at runtime.
+    - Fully compliant with the Open/Closed Principle (OCP).
+
+- ✅ Clean Architecture & SOLID principles
+    - Clear separation between Controllers, Services, Repositories, and Filters.
+    - Business logic is framework-agnostic and easy to test.
+
 - ✅ Repository Pattern for data access
+    - Abstracts data source logic and keeps controllers thin.
+    - Easily replaceable or extendable data storage.
+
+- ✅ Advanced filtering
+    - Filter phone numbers by:
+        - Country
+    - Validation state (OK / NOK)
+
+- ✅ Manual pagination using LengthAwarePaginator
+    - Supports pagination after in-memory filtering.
+    - Fully compatible with Laravel pagination views and query strings.
+
 - ✅ Caching for performance optimization
-- ✅ Pagination & filtering (country / state)
-- ✅ Docker-ready environment
-- ✅ Clean, testable, extendable architecture
+    - Phone validation results are cached to reduce repeated computations.
+    - Improves performance for large datasets.
+
+- ✅ Docker-ready setup
+    - Fully containerized for consistent development environments.
+    - One-command startup using Docker Compose.
+
+- ✅ Scalable & maintainable codebase
+    - Designed as a real-world production-ready example.
+    - Easy to extend, refactor, and test.
 
 ---
 
@@ -49,7 +82,6 @@ focusing on **OOP, SOLID principles, and maintainability** rather than UI.
 
 - PHP 8.3
 - Laravel
-- MySQL 8
 - Nginx
 - Docker & Docker Compose
 - SQLite 3
@@ -85,7 +117,7 @@ Make sure you have the following installed:
 
 - PHP **8.3**
 - Composer
-- MySQL **8**
+- SQLite **3**
 - Web server (Apache / Nginx) **or** Laravel built-in server
 
 ---
@@ -98,6 +130,7 @@ cd phone-validator
 composer install
 cp .env.example .env
 
+.env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -112,10 +145,5 @@ php artisan serve
 http://127.0.0.1:8000
 ```
 
-✅ Notes
-
-Make sure storage/ and bootstrap/cache/ are writable
-
-Cache is enabled by default (TTL = 1 hour)
-
-This setup is ideal for local development or code review
+- ✅ Notes
+    - Make sure storage/ and bootstrap/cache/ are writable
